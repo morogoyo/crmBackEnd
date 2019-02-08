@@ -1,0 +1,14 @@
+
+test payload for h2 db
+
+{
+	"id":1,
+	"fName":"Rene",
+	"lName":"Torres",
+	"gender":"Male",
+	"address":  "Sterling Spring Rd. Orlando Fl",
+	"email": "torres.rene@outlook.com",
+	"profession": "Dev",
+	"mobileNumber" :1234567,
+	"birthday":"1979-10-11"
+}
