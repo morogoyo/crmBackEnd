@@ -1,8 +1,0 @@
-Endpoint Documentation will be at this address
-localhost:8080/swagger-ui.html
-
-to verify the database use the following url
-
-localhost:8080/h2
-Separated Repositories
-
