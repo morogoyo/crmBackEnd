@@ -21,4 +21,5 @@ localhost:8080/swagger-ui.html
 
 to verify the database use the following url
 
+H2 has been disabled as of today 2-9-2019 allowing for un-interupted development
 localhost:8080/h2
