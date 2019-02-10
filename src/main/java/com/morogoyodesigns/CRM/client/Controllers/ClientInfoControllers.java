@@ -33,7 +33,7 @@ public class ClientInfoControllers {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET ,value = "/{id}")
-	public Optional<Client> getOneCustomer(@PathVariable int id) {
+	public Optional<Client> getOneCustomer(@PathVariable Long id) {
 		return client.findById(id);
 	}
 
@@ -47,7 +47,7 @@ public class ClientInfoControllers {
 	}
 	@ResponseStatus(code = HttpStatus.OK)
 	@RequestMapping(method = RequestMethod.PUT , value = "/update{id}")
-    public void updateCustomersInfo(@PathVariable("id") int id , @RequestBody Client updateCustomer){
+    public void updateCustomersInfo(@PathVariable("id") Long id , @RequestBody Client updateCustomer){
 
 		Client customerToUpdate = client.getOne(id);
 		System.out.println(customerToUpdate.getFName());
@@ -59,7 +59,7 @@ public class ClientInfoControllers {
     }
 
     @RequestMapping(value = "/delete{id}" , method = RequestMethod.DELETE)
-    public void deleteCustomer(@PathVariable("id") int id){
+    public void deleteCustomer(@PathVariable("id") Long id){
 
 		Client deletedClient = client.getOne(id);
 		System.out.println(deletedClient);

@@ -1,5 +1,6 @@
 package com.morogoyodesigns.CRM.company.data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -26,12 +27,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Company {
+public class Company implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "company_id")
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "company_name")
 	private String companyName;
@@ -56,7 +57,8 @@ public class Company {
 	@UpdateTimestamp
 	private Date dateUpdated;
 	
-	@OneToOne(mappedBy = "companyAddress",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy="company",cascade=CascadeType.ALL)
+	
 	private CompanyAddress companyAddress;
 
 }

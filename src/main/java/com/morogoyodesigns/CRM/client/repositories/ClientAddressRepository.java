@@ -6,7 +6,7 @@ import com.morogoyodesigns.CRM.client.data.Address;
 
 
 
-public interface ClientAddressRepository extends JpaRepository<Address, Integer> {	
+public interface ClientAddressRepository extends JpaRepository<Address, Long> {	
 	
 	
 	

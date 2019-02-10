@@ -1,11 +1,19 @@
 package com.morogoyodesigns.CRM.company.data;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,11 +26,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CompanyAddress {	
+public class CompanyAddress implements Serializable{	
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "company_address_id")
-	private Integer companyAddressId;
+	private Long companyAddressId;
 	
 	@Column(name = "buildingNumber")
 	private Integer buildingNumber;
@@ -46,9 +55,10 @@ public class CompanyAddress {
 	private String poBox;
 	
 	
-	@OneToOne
-	@MapsId
-	private Company companyAddress;
+	@OneToOne(fetch = FetchType.LAZY, optional = false,cascade=CascadeType.ALL)
+	@JoinColumn(name = "company_address_id", nullable = false)
+	@JsonIgnore
+	private Company company;
 	
 
 }

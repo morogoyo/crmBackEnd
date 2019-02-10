@@ -35,21 +35,21 @@ public class CompanyInfoControllers {
 	}
 	
 	
-	@RequestMapping(value="/insert{id}" , method=RequestMethod.POST ,produces ="application/json")
-	public void insertCustomer(@RequestBody Company company, @RequestParam Integer id) {		
-		company.setId(id);
-		company.getCompanyAddress().setCompanyAddressId(id);
+	@RequestMapping(value="/insert" , method=RequestMethod.POST ,produces ="application/json")
+	public void insertCustomer(@RequestBody Company company) {		
+//		company.setId(id);
+//		company.getCompanyAddress().setCompanyAddressId(id);
 		companyRepo.save(company);
 		
 	}
 	
 	// when editing company info the client id should be passed in to the url in order for 
 	// it to be looked up and update the right company
-	@RequestMapping(value="/update{id}" , method=RequestMethod.PUT)
-	public void updateCustomer(@RequestBody Company company, @RequestParam Integer id) {
-		Company companyId = companyRepo.getOne(id);
-		companyId = company;
-		companyRepo.save(companyId);		 
+	@RequestMapping(value="/update" , method=RequestMethod.PUT)
+	public void updateCustomer(@RequestBody Company company) {
+//		Company companyId = companyRepo.getOne(id);
+//		companyId = company;
+		companyRepo.save(company);		 
 		
 	}
 	
