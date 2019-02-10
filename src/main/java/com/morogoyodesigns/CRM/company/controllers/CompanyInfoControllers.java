@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.morogoyodesigns.CRM.client.repositories.ClientRepository;
 import com.morogoyodesigns.CRM.company.data.Company;
+import com.morogoyodesigns.CRM.company.data.CompanyAddress;
 import com.morogoyodesigns.CRM.company.repository.CompanyRepository;
+
+import ch.qos.logback.core.net.server.Client;
 
 
 
@@ -18,24 +23,33 @@ import com.morogoyodesigns.CRM.company.repository.CompanyRepository;
 public class CompanyInfoControllers {
 	
 	@Autowired
-	private CompanyRepository cr;
+	private CompanyRepository companyRepo;
 	
-	@RequestMapping(value="/all", method=RequestMethod.GET)
+	@Autowired
+	private ClientRepository clientRepo;
+	
+	@RequestMapping(value="/all", method=RequestMethod.GET , produces = "application/json")
 	public List<Company> getAllCompanies() {
-		List<Company> allCompanies = cr.findAll();
+		List<Company> allCompanies = companyRepo.findAll();
 		return allCompanies;
 	}
 	
 	
-	@RequestMapping(value="/insert" , method=RequestMethod.POST ,produces ="application/json")
-	public void insertCustomer(@RequestBody Company company) {		
-		cr.save(company);
+	@RequestMapping(value="/insert{id}" , method=RequestMethod.POST ,produces ="application/json")
+	public void insertCustomer(@RequestBody Company company, @RequestParam Integer id) {		
+		company.setId(id);
+		company.getCompanyAddress().setCompanyAddressId(id);
+		companyRepo.save(company);
 		
 	}
 	
-	@RequestMapping(value="/update" , method=RequestMethod.PUT)
-	public void updateCustomer(@RequestBody Company company) {		
-		cr.save(company);		 
+	// when editing company info the client id should be passed in to the url in order for 
+	// it to be looked up and update the right company
+	@RequestMapping(value="/update{id}" , method=RequestMethod.PUT)
+	public void updateCustomer(@RequestBody Company company, @RequestParam Integer id) {
+		Company companyId = companyRepo.getOne(id);
+		companyId = company;
+		companyRepo.save(companyId);		 
 		
 	}
 	

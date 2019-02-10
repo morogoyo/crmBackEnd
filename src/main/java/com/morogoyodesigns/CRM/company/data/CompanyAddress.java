@@ -1,4 +1,4 @@
-package com.morogoyodesigns.CRM.client.data;
+package com.morogoyodesigns.CRM.company.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,17 +13,16 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "customer_address")
+@Table(name = "company_address")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Address {
-	
+public class CompanyAddress {	
 	
 	@Id
-	@Column(name = "address_id")
-	private Integer id;
+	@Column(name = "company_address_id")
+	private Integer companyAddressId;
 	
 	@Column(name = "buildingNumber")
 	private Integer buildingNumber;
@@ -40,10 +39,16 @@ public class Address {
 	@Column(name = "country")
 	private String country;
 	
-	@Column(name = "id")
+	@Column(name = "county")
 	private String county;
+	
+	@Column(name = "po_box")
+	private String poBox;
+	
 	
 	@OneToOne
 	@MapsId
-	private Client client;
+	private Company companyAddress;
+	
+
 }

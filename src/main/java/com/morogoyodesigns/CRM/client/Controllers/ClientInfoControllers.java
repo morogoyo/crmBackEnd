@@ -1,4 +1,4 @@
-package com.morogoyodesigns.CRM.client.restControllers;
+package com.morogoyodesigns.CRM.client.Controllers;
 
 import java.util.List;
 import java.util.Optional;

@@ -2,11 +2,14 @@ package com.morogoyodesigns.CRM.company.data;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,12 +30,11 @@ public class Company {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "company_id")
 	private Integer id;
 	
 	@Column(name = "company_name")
 	private String companyName;
-	
 	
 	@Column(name = "company_address")
 	private String address;
@@ -54,10 +56,7 @@ public class Company {
 	@UpdateTimestamp
 	private Date dateUpdated;
 	
-	
-	
-    
+	@OneToOne(mappedBy = "companyAddress",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private CompanyAddress companyAddress;
 
-	
-    
 }

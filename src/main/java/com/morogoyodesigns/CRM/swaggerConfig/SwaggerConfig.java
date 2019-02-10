@@ -1,4 +1,4 @@
-package com.morogoyodesigns.CRM.client.config;
+package com.morogoyodesigns.CRM.swaggerConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SwaggerConfig  {
     public Docket getCustomer(){
         return  new Docket(DocumentationType.SWAGGER_2).groupName("customer")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.morogoyodesigns.CRM.client.restControllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.morogoyodesigns.CRM.client.Controllers"))
                 .paths(regex("/customer.*"))
                 .build()
                 .apiInfo(restControllers());
@@ -53,5 +53,7 @@ public class SwaggerConfig  {
                 .description("All restControllers related to company information")
                 .build();
     }
+    
+    
 
 }
